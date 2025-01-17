@@ -1,0 +1,820 @@
+/* Urban Oasis Color Palette and Design */
+:root {
+    --primary-color: #2C3E50;        /* Dark urban slate */
+    --secondary-color: #E67E22;      /* Warm terracotta */
+    --accent-color: #3498DB;         /* Vibrant city blue */
+    --background-color: #F5E6D3;     /* Soft mountain sand */
+    --text-primary: #2C3E50;         /* Dark urban slate */
+    --text-secondary: #34495E;       /* Softer urban gray */
+    --gradient-urban: linear-gradient(135deg, rgba(44,62,80,0.9) 0%, rgba(52,73,94,0.7) 100%);
+    --gradient-mountain: linear-gradient(45deg, rgba(230,126,34,0.1) 0%, rgba(52,152,219,0.1) 100%);
+}
+
+/* Architectural and Natural Inspired Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background-color);
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Urban Architectural Navigation */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 5%;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -1px;
+    position: relative;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section - Urban Skyline Meets Mountain Landscape */
+.hero {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background: 
+        var(--gradient-mountain),
+        var(--gradient-urban);
+    color: var(--background-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, rgba(0,0,0,0.1), transparent),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23ffffff" fill-opacity="0.05"><path d="M11 18 C 15 14, 20 12, 25 11 C 30 10, 35 10, 40 11 C 45 12, 50 14, 54 18 L 54 54 L 11 54 Z"/></g></svg>');
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--background-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    color: rgba(245,230,211,0.8);
+    max-width: 500px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
+
+/* About Section - Urban Texture and Mountain Warmth */
+.about {
+    background-color: var(--background-color);
+    padding: 100px 0;
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, rgba(230,126,34,0.05), transparent);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.about-content .profile-image {
+    flex: 0 0 300px;
+    margin: 0;
+}
+
+.about-content .about-text {
+    flex: 1;
+    text-align: left;
+}
+
+.profile-image {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Explicitly set to 50% for circle */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.profile-image::before {
+    content: 'KA';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.1);
+    z-index: 1;
+}
+
+.profile-image .placeholder-icon {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 150px;
+    opacity: 0.8;
+}
+
+.profile-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
+}
+
+.profile-image:hover img {
+    opacity: 1;
+}
+
+/* Skills Section - City Grid Inspiration */
+.skills {
+    background-color: rgba(255,255,255,0.6);
+    padding: 100px 0;
+    backdrop-filter: blur(10px);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skill-item {
+    background-color: rgba(255,255,255,0.8);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(44,62,80,0.1);
+}
+
+.skill-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.skill-item i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+}
+
+/* Projects Section - Urban Innovation Showcase */
+.projects {
+    background-color: rgba(255,255,255,0.6);
+    padding: 100px 0;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, rgba(230,126,34,0.05), transparent);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.projects-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.projects-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.projects-header p {
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.project-image {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+    margin: 0 auto;
+}
+
+.project-image::before {
+    content: attr(data-project);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.1);
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.project-image .placeholder-icon {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 80px;
+    opacity: 0.6;
+}
+
+.project-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+}
+
+.project-image:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-details {
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-details {
+    transform: translateY(0);
+}
+
+.project-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.project-details p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.project-tags {
+    display: flex;
+    gap: 10px;
+}
+
+.project-tags span {
+    background-color: rgba(255,255,255,0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.project-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: rgba(255,255,255,0.9);
+}
+
+.project-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsive Design for Projects Section */
+@media screen and (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Contact Section - Urban Connection Styling */
+.contact {
+    background-color: rgba(255,255,255,0.7);
+    padding: 100px 0;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, rgba(230,126,34,0.05), transparent);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.contact-header p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.contact-wrapper {
+    display: flex;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    padding: 50px;
+}
+
+.contact-info-side {
+    flex: 0 0 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-right: 1px solid rgba(44,62,80,0.1);
+    padding-right: 40px;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-method i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    flex: 0 0 60px;
+    text-align: center;
+}
+
+.contact-method div h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.contact-method div p {
+    color: var(--text-secondary);
+}
+
+.social-connect {
+    margin-top: 20px;
+}
+
+.social-connect h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons .social-icon {
+    color: var(--text-secondary);
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    color: var(--secondary-color);
+}
+
+.contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(44,62,80,0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-button {
+    align-self: flex-start;
+    padding: 12px 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        display: none; /* Placeholder for mobile menu */
+    }
+}
+
+/* Responsive Design for Contact Section */
+@media screen and (max-width: 992px) {
+    .contact-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-info-side {
+        border-right: none;
+        border-bottom: 1px solid rgba(44,62,80,0.1);
+        padding-right: 0;
+        padding-bottom: 30px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .contact-method {
+        flex: 0 0 45%;
+    }
+}
+
+/* Scroll Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Default hidden state for animations */
+.hero,
+.about,
+.skills,
+.projects,
+.contact,
+.skills-grid .skill-item,
+.projects-grid .project-card,
+.about-content .profile-image,
+.about-content .about-text,
+.contact-wrapper {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+/* Animation states */
+.hero.animate,
+.about.animate,
+.skills.animate,
+.projects.animate,
+.contact.animate {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.about-content .profile-image.animate {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.about-content .about-text.animate {
+    animation: slideInRight 1s ease forwards;
+}
+
+.skills-grid .skill-item.animate {
+    animation: scaleIn 0.6s ease forwards;
+    animation-delay: calc(0.1s * var(--delay));
+}
+
+.skills-grid .skill-item:nth-child(1) { --delay: 1; }
+.skills-grid .skill-item:nth-child(2) { --delay: 2; }
+.skills-grid .skill-item:nth-child(3) { --delay: 3; }
+.skills-grid .skill-item:nth-child(4) { --delay: 4; }
+
+.projects-grid .project-card.animate {
+    animation: scaleIn 0.6s ease forwards;
+    animation-delay: calc(0.2s * var(--delay));
+}
+
+.projects-grid .project-card:nth-child(1) { --delay: 1; }
+.projects-grid .project-card:nth-child(2) { --delay: 2; }
+.projects-grid .project-card:nth-child(3) { --delay: 3; }
+
+.contact-wrapper.animate {
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Additional Urban-Mountain Texture */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
