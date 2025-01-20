@@ -112,4 +112,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         heroObserver.observe(document.querySelector('.hero'));
     }
+
+    // Smooth scrolling for all navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Remove active classes from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            link.classList.add('active');
+            
+            // Smooth scroll to the target section
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    });
+
+    // Smooth scrolling for CTA buttons
+    const ctaButtons = document.querySelectorAll('.scroll-to-section');
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = button.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
 });
