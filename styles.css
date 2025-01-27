@@ -202,7 +202,7 @@ nav ul li a:hover::after {
         width: 100%;
         height: 100%;
         background-color: #FFFFFF;
-        padding-top: 120px;
+        padding-top: 62px;
         text-align: center;
         z-index: 99;
     }
@@ -212,7 +212,6 @@ nav ul li a:hover::after {
     }
 
     .nav-menu li {
-        margin: 30px 0;
         width: 100%;
     }
 
@@ -222,7 +221,6 @@ nav ul li a:hover::after {
         color: #2C3E50;
         text-decoration: none;
         display: block;
-        padding: 15px 0;
         width: 100%;
         background-color: rgba(230, 126, 34, 0.1);
         border-bottom: 2px solid #E67E22;
@@ -861,15 +859,14 @@ nav ul li a:hover::after {
         border-right: none;
         border-bottom: 1px solid rgba(44,62,80,0.1);
         padding-right: 0;
+        align-content: center;
         padding-bottom: 30px;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-between;
     }
 
-    .contact-method {
-        flex: 0 0 45%;
-    }
+
 }
 
 /* Scroll Animations */
@@ -2175,7 +2172,6 @@ nav ul li a:hover::after {
     .contact-wrapper {
         flex-direction: column;
         gap: 30px;
-        padding: 30px 15px;
     }
 
     .contact-info-side {
@@ -2384,4 +2380,227 @@ body.menu-open::before {
     .seven-approach .carousel-control-next {
         display: none !important;
     }
+}
+
+/* Testimonials Section Styling */
+#testimonials {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#testimonials::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at 20% 80%, 
+        rgba(52, 152, 219, 0.05) 0%, 
+        transparent 70%
+    );
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.testimonials-header h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.testimonials-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 70%;
+    height: 4px;
+    background-color: var(--accent-color);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 15px 35px rgba(44, 62, 80, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: 
+        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.testimonial-card::before {
+    display: none;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-15px) rotate(1deg);
+    box-shadow: 
+        0 25px 50px rgba(44, 62, 80, 0.15),
+        0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-content {
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+}
+
+.testimonial-card .testimonial-text {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    position: relative;
+}
+
+.testimonial-card .testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.testimonial-author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-author-image {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.testimonial-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-author-name {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-author-role {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials-header h2 {
+        font-size: 2rem;
+    }
+
+    .testimonial-card {
+        padding: 2rem;
+    }
+}
+
+#testimonials .carousel-control-prev,
+#testimonials .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    opacity: 1;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#testimonials .carousel-control-prev {
+    left: -30px;
+}
+
+#testimonials .carousel-control-next {
+    right: -30px;
+}
+
+#testimonials .carousel-control-prev:hover,
+#testimonials .carousel-control-next:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+}
+
+#testimonials .carousel-control-prev-icon,
+#testimonials .carousel-control-next-icon {
+    width: 25px;
+    height: 25px;
+    background-image: none;
+    position: relative;
+}
+
+#testimonials .carousel-control-prev-icon::before,
+#testimonials .carousel-control-next-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--primary-color);
+    border-right: 2px solid var(--primary-color);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#testimonials .carousel-control-prev-icon::before {
+    transform: translate(-50%, -50%) rotate(225deg);
+}
+
+@media (max-width: 992px) {
+    #testimonials .carousel-control-prev,
+    #testimonials .carousel-control-next {
+        display: none;
+    }
+}
+
+.lead {
+    color: #007bff;
 }
