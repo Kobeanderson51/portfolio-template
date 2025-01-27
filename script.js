@@ -43,14 +43,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+    // Navigation handling for both internal and external links
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Remove active class from all nav links
+            navLinks.forEach(l => l.classList.remove('active'));
             
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Check if it's an internal anchor link or an external page link
+            const href = this.getAttribute('href');
+            
+            // If it's an internal anchor link (starts with #)
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            } 
+            // If it's a contact link on services.html
+            else if (href === '#contact' && window.location.pathname.includes('services.html')) {
+                e.preventDefault();
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            // If it's a contact link on a different page
+            else if (href.includes('#contact') && !window.location.pathname.includes(href.split('#')[0])) {
+                e.preventDefault();
+                window.location.href = href;
+            }
+            // If it's an external HTML page link
+            else if (href.endsWith('.html')) {
+                // Optional: Add a transition or loading effect here
+                window.location.href = href;
+            }
+        });
+    });
+
+    // Highlight active nav link based on current page
+    const currentPath = window.location.pathname.split('/').pop();
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath || 
+            (currentPath === '' && linkPath === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+
+    // Handle contact section navigation if already on the page
+    const contactLinks = document.querySelectorAll('a[href$="#contact"]');
+    contactLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
@@ -114,28 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         heroObserver.observe(document.querySelector('.hero'));
     }
-
-    // Smooth scrolling for all navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Remove active classes from all links
-            navLinks.forEach(l => l.classList.remove('active'));
-            
-            // Add active class to clicked link
-            link.classList.add('active');
-            
-            // Smooth scroll to the target section
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            targetSection.scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        });
-    });
 
     // Toggle mobile menu
     hamburgerMenu.addEventListener('click', () => {

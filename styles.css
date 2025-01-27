@@ -2604,3 +2604,58 @@ body.menu-open::before {
 .lead {
     color: #007bff;
 }
+
+/* Services Page Styles */
+#services {
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#expertise {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.expertise-list {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.expertise-item {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.expertise-item h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
