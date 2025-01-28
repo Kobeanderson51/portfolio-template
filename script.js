@@ -3,8 +3,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav');
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    // Scroll Animation Function
+    console.log('Navigation Debug:', {
+        nav: !!nav,
+        hamburgerMenu: !!hamburgerMenu,
+        navMenu: !!navMenu,
+        navLinks: navLinks.length
+    });
+
+    // Ensure navigation is only set up once
+    if (window.navigationInitialized) return;
+    window.navigationInitialized = true;
+
+    // Only run these functions if all required elements exist
+    if (hamburgerMenu && navMenu) {
+        // Mobile navigation toggle
+        function toggleMobileMenu(event) {
+            // Prevent multiple triggers
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            
+            console.log('Toggle Mobile Menu Called');
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        }
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            console.log('Close Mobile Menu Called');
+            hamburgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+
+        // Remove any existing event listeners first
+        const oldHamburgerMenu = document.querySelector('.hamburger-menu');
+        const oldNavMenu = document.querySelector('.nav-menu');
+
+        // Hamburger menu click event - use one-time binding
+        hamburgerMenu.removeEventListener('click', toggleMobileMenu);
+        hamburgerMenu.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking outside
+        function handleOutsideClick(event) {
+            const isClickInsideNavMenu = navMenu.contains(event.target);
+            const isClickInsideHamburger = hamburgerMenu.contains(event.target);
+
+            if (!isClickInsideNavMenu && !isClickInsideHamburger && navMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        }
+
+        // Remove any existing outside click listeners
+        document.removeEventListener('click', handleOutsideClick);
+        document.addEventListener('click', handleOutsideClick);
+
+        // Add click event to nav links to close mobile menu
+        navLinks.forEach(link => {
+            // Remove existing listeners to prevent duplicates
+            link.removeEventListener('click', closeMobileMenu);
+            link.addEventListener('click', closeMobileMenu);
+        });
+    } else {
+        console.error('Navigation elements not found:', {
+            hamburgerMenu: !!hamburgerMenu,
+            navMenu: !!navMenu
+        });
+    }
+
+    // Scroll Animation Function (only run if sections exist)
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -22,18 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scrollObserver = new IntersectionObserver(animateOnScroll, observerOptions);
 
-    // Select elements to animate
+    // Select elements to animate (with fallback)
     const animatedSections = [
-        '.hero',
-        '.about',
-        '.skills',
-        '.projects',
-        '.contact',
-        '.skills-grid .skill-item',
-        '.projects-grid .project-card',
-        '.about-content .profile-image',
-        '.about-content .about-text',
-        '.contact-wrapper'
+        '.hero', '.about', '.skills', '.projects', '.contact', 
+        '.skills-grid .skill-item', '.projects-grid .project-card', 
+        '.about-content .profile-image', '.about-content .about-text', 
+        '.contact-wrapper', '.services-grid .service-item'
     ];
 
     animatedSections.forEach(selector => {
@@ -44,8 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Navigation handling for both internal and external links
-    const navLinks = document.querySelectorAll('.nav-link');
-    
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             // Remove active class from all nav links
@@ -175,34 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         heroObserver.observe(document.querySelector('.hero'));
     }
-
-    // Toggle mobile menu
-    hamburgerMenu.addEventListener('click', () => {
-        hamburgerMenu.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
-
-    // Close menu when a nav link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    });
-
-    // Close menu if clicked outside
-    document.addEventListener('click', (event) => {
-        const isClickInsideMenu = navMenu.contains(event.target);
-        const isClickOnHamburger = hamburgerMenu.contains(event.target);
-        
-        if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
-            hamburgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-    });
 
     // Smooth scrolling for CTA buttons
     const ctaButtons = document.querySelectorAll('.scroll-to-section');

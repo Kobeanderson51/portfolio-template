@@ -58,6 +58,8 @@ body {
 }
 
 /* Urban Architectural Navigation */
+
+
 header {
     position: fixed;
     width: 100%;
@@ -200,48 +202,32 @@ nav ul li a:hover::after {
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        background-color: #FFFFFF;
-        padding-top: 62px;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding-top: 100px;
         text-align: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
         z-index: 99;
     }
 
     .nav-menu.active {
         display: flex;
+        transform: translateX(0);
     }
 
     .nav-menu li {
-        width: 100%;
+        margin: 20px 0;
     }
 
-    .nav-menu a {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #2C3E50;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-        background-color: rgba(230, 126, 34, 0.1);
-        border-bottom: 2px solid #E67E22;
-        transition: all 0.3s ease;
+    .nav-menu li a {
+        font-size: 1.5rem;
+        color: var(--secondary-color);
     }
 
-    .nav-menu a:hover {
-        background-color: rgba(230, 126, 34, 0.2);
-        color: #E67E22;
-        transform: scale(1.02);
-    }
-
-    .nav-menu a::after {
-        content: '→';
-        margin-left: 10px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .nav-menu a:hover::after {
-        opacity: 1;
+    .nav-menu li a::after {
+        bottom: -5px;
     }
 }
 
@@ -2258,6 +2244,10 @@ body.menu-open::before {
     background-color: rgba(255, 255, 255, 0.9);
     z-index: 50;
     pointer-events: none;
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 .seven-approach .carousel-control-prev,
