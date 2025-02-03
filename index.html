@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="msapplication-TileImage" content="images/favicons/image0.jpeg">
-    <link rel="icon" href="images/favicons/image0.jpeg">
-    <link rel="apple-touch-icon" href="images/favicons/image0.jpeg">
-    <link rel="shortcut icon" href="images/favicons/image0.jpeg" type="image/jpeg">
+    <meta name="msapplication-TileImage" content="images/favicons/LOGO - Black.png">
+    <link rel="icon" href="images/favicons/LOGO - Black.png">
+    <link rel="apple-touch-icon" href="images/favicons/LOGO - Black.png">
+    <link rel="shortcut icon" href="images/favicons/LOGO - Black.png" type="image/png">
     <meta name="theme-color" content="#000000">
     <style>
         .seven-approach .carousel-item {
@@ -26,7 +26,11 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Seven Consulting</div>
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="images/favicons/LOGO - Black.png" alt="Seven Consulting Logo" class="nav-logo">
+                    </a>
+                </div>
                 <div class="hamburger-menu">
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -77,7 +81,11 @@
                     <div class="mission-statement">
                         <h3>Mission Statement</h3>
                         <blockquote>
-                            "To help food and beverage companies achieve sustainable growth and expansion by focusing on the key pillars of people, product, and profitability—empowering teams, refining offerings, and driving financial success while delivering exceptional value to customers and communities."
+                            <p><strong>My Purpose:</strong> To drive sustainable growth and expansion for food and beverage companies.</p>
+                            
+                            <p><strong>Cause:</strong> Empowering teams, refining offerings, and enhancing profitablity.</p>
+                            
+                            <p><strong>Passion:</strong> Creating lasting value for businesses, customers, and communities.</p>
                         </blockquote>
                     </div>
                 </div>
@@ -325,11 +333,11 @@
                     <form id="contact-form" class="contact-form">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="user_name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address (Required)</label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            <input type="email" id="email" name="user_email" placeholder="your.email@example.com" required>
                         </div>
                         <div class="form-group">
                             <label for="city">City/State (Required)</label>
@@ -337,13 +345,16 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone (Optional)</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(Optional) Your Phone Number">
+                            <input type="tel" id="phone" name="contact_number" placeholder="(Optional) Your Phone Number">
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message</label>
-                            <textarea id="message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+                            <textarea id="message" name="message" placeholder="How can I help you?" required></textarea>
                         </div>
-                        <button type="submit" class="submit-button">Send Message</button>
+                        <button type="submit" class="submit-btn">
+                            <span class="button-text">Send Message</span>
+                            <div class="loading-spinner" style="display: none;"></div>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -357,14 +368,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sevenApproachCarousel = document.getElementById('sevenApproachCarousel');
-            
-            // Optional: Add custom interval if needed
-            sevenApproachCarousel.setAttribute('data-bs-interval', '3000');
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

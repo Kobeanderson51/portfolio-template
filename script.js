@@ -1,3 +1,13 @@
+// Initialize EmailJS first
+(function() {
+    try {
+        emailjs.init("ECSgXrEZh4MsHs3ZI");
+        console.log('EmailJS initialized successfully');
+    } catch (error) {
+        console.error('Failed to initialize EmailJS:', error);
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     const nav = document.querySelector('nav');
@@ -110,6 +120,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navigation handling for both internal and external links
     navLinks.forEach(link => {
+        link.removeEventListener('click', function(e) {
+            // Remove active class from all nav links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Check if it's an internal anchor link or an external page link
+            const href = this.getAttribute('href');
+            
+            // If it's an internal anchor link (starts with #)
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            } 
+            // If it's a contact link on services.html
+            else if (href === '#contact' && window.location.pathname.includes('services.html')) {
+                e.preventDefault();
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            // If it's a contact link on a different page
+            else if (href.includes('#contact') && !window.location.pathname.includes(href.split('#')[0])) {
+                e.preventDefault();
+                window.location.href = href;
+            }
+            // If it's an external HTML page link
+            else if (href.endsWith('.html')) {
+                // Optional: Add a transition or loading effect here
+                window.location.href = href;
+            }
+        });
         link.addEventListener('click', function(e) {
             // Remove active class from all nav links
             navLinks.forEach(l => l.classList.remove('active'));
@@ -167,6 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle contact section navigation if already on the page
     const contactLinks = document.querySelectorAll('a[href$="#contact"]');
     contactLinks.forEach(link => {
+        link.removeEventListener('click', function(e) {
+            e.preventDefault();
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const contactSection = document.getElementById('contact');
@@ -178,31 +239,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Contact form submission
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const message = e.target.message.value;
+    // Contact form submission handler
+    async function sendEmail(event) {
+        event.preventDefault();
+        console.log('Form submission started');
 
-        // Basic form validation
-        if (!name || !email || !message) {
-            alert('Please fill out all fields');
-            return;
+        const form = event.target;
+        const submitButton = form.querySelector('.submit-btn');
+        const buttonText = submitButton.querySelector('.button-text');
+        const loadingSpinner = submitButton.querySelector('.loading-spinner');
+
+        // Show loading state
+        buttonText.style.display = 'none';
+        loadingSpinner.style.display = 'block';
+        submitButton.disabled = true;
+
+        try {
+            const templateParams = {
+                from_name: form.user_name.value,
+                from_email: form.user_email.value,
+                city: form.city.value,
+                phone: form.contact_number.value || 'Not provided',
+                message: form.message.value
+            };
+
+            console.log('Sending email with params:', templateParams);
+
+            const response = await emailjs.send(
+                'service_3iz0wa8',
+                'template_eg3szv8',
+                templateParams
+            );
+
+            console.log('Email sent successfully:', response);
+            alert('Message sent successfully!');
+            form.reset();
+        } catch (error) {
+            console.error('Error details:', error);
+            alert('Failed to send message. Please try again later. Error: ' + error.message);
+        } finally {
+            // Reset button state
+            buttonText.style.display = 'block';
+            loadingSpinner.style.display = 'none';
+            submitButton.disabled = false;
         }
+    }
 
-        // In a real-world scenario, you would send this data to a backend service
-        console.log('Form Submitted:', { name, email, message });
-        
-        // Show success message
-        alert('Thank you for your message! I will get back to you soon.');
-        
-        // Reset the form
-        contactForm.reset();
-    });
+    // Contact form submission
+    if (contactForm) {
+        console.log('Contact form found, attaching submit handler');
+        contactForm.addEventListener('submit', sendEmail);
+    } else {
+        console.error('Contact form not found in the DOM');
+    }
 
     // Navigation scroll effect
+    window.removeEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             nav.classList.add('scrolled');
@@ -242,6 +340,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scrolling for CTA buttons
     const ctaButtons = document.querySelectorAll('.scroll-to-section');
     ctaButtons.forEach(button => {
+        button.removeEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = button.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = button.getAttribute('href');
