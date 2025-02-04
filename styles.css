@@ -137,6 +137,10 @@ nav ul li a:hover {
 
 /* Responsive Navigation */
 @media screen and (max-width: 768px) {
+    #home{
+        min-height: 30vh !important;
+        height: 40vh !important;
+    }
     nav {
         position: relative;
         display: flex;
@@ -2259,6 +2263,41 @@ body.no-scroll {
 }
 
 /* Loading Spinner */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.submit-btn {
+    position: relative;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.submit-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
 .loading-spinner {
     width: 20px;
     height: 20px;
