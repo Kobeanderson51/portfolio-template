@@ -12,6 +12,15 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
+# WordPress specific rules
+RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
+
+# Skip all rules for WordPress admin and other WordPress paths
+RewriteCond %{REQUEST_URI} !^/wp-admin [NC]
+RewriteCond %{REQUEST_URI} !^/wp-includes [NC]
+RewriteCond %{REQUEST_URI} !^/wp-content [NC]
+RewriteCond %{REQUEST_URI} !^/wp-login\.php [NC]
+
 # Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
