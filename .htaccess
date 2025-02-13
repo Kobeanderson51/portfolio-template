@@ -12,26 +12,26 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-# WordPress specific rules
+# WordPress Rules
+<IfModule mod_rewrite.c>
 RewriteEngine On
-
-# Allow WordPress admin access
-<FilesMatch "wp-login\.php|wp-admin">
-    Order Allow,Deny
-    Allow from all
-</FilesMatch>
-
-# Base WordPress rules
 RewriteBase /
-RewriteRule ^index\.php$ - [L]
 
-# Skip all rules for WordPress admin and other WordPress paths
-RewriteCond %{REQUEST_URI} !^/wp-admin [NC]
-RewriteCond %{REQUEST_URI} !^/wp-includes [NC]
-RewriteCond %{REQUEST_URI} !^/wp-content [NC]
-RewriteCond %{REQUEST_URI} !^/wp-login\.php [NC]
+# Add specific rules for WordPress files
+RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
 
-# Remove .html extension
+# Handle WordPress admin and login
+RewriteCond %{REQUEST_URI} ^/(wp-admin|wp-login\.php) [NC]
+RewriteRule . - [L]
+
+# WordPress core rules
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^wp-(content|admin|includes)/.* - [L]
+RewriteRule ^wp-.*\.php$ - [L]
+
+# Handle static HTML files
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
@@ -39,6 +39,18 @@ RewriteRule ^(.*)$ $1.html [NC,L]
 # Handle direct access to HTML files
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
 RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+# Default WordPress rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# Allow WordPress admin access
+<FilesMatch "wp-login\.php|wp-admin">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
 
 # Set default index page
 DirectoryIndex index.html
