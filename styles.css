@@ -74,6 +74,13 @@ body {
     justify-content: center;
 }
 
+@media screen and (max-width: 768px) {
+    #home {
+        min-height: 50vh !important;
+        height: 50vh !important;
+    }
+}
+
 #home::before {
     display: none;
 }
@@ -1613,13 +1620,6 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#home {
-    min-height: 100vh;
-    height: 100vh;
-    display: flex;
-    align-items: center;
 }
 
 /* Ensure no extra space at bottom of page */
