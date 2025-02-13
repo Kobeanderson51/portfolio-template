@@ -13,7 +13,17 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 # WordPress specific rules
-RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
+RewriteEngine On
+
+# Allow WordPress admin access
+<FilesMatch "wp-login\.php|wp-admin">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Base WordPress rules
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
 
 # Skip all rules for WordPress admin and other WordPress paths
 RewriteCond %{REQUEST_URI} !^/wp-admin [NC]
@@ -68,4 +78,9 @@ AddType application/x-font-woff2 .woff2
     Header set X-Frame-Options "SAMEORIGIN"
     Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     Header set Access-Control-Allow-Origin "*"
+    
+    # Allow WordPress admin access
+    <FilesMatch "wp-login\.php|wp-admin">
+        Header unset X-Frame-Options
+    </FilesMatch>
 </IfModule>
