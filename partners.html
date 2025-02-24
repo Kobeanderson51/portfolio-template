@@ -19,6 +19,97 @@
     <meta name="theme-color" content="#000000">
     
     <script src="load-navbar.js"></script>
+    <style>
+        .learn-more-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .learn-more-btn:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        /* Tablet */
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        /* Large Desktop */
+        @media (min-width: 1400px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+        }
+        .service-item {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+        .service-icon {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+        }
+        .service-icon img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+        .service-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .service-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+        .service-hover {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        .container {
+            padding: 0 2rem;
+        }
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0 4rem;
+            }
+        }
+    </style>
 </head>
 <body class="services">
     <!-- Navbar placeholder -->
@@ -34,63 +125,80 @@
                 <div class="services-grid">
                     <div class="service-item animate">
                         <div class="service-icon">
-                            <img src="images/buisnesslogo/kobelogo.webp" alt="Kobe Anderson Logo" style="width: 100px; height: auto;">
+                            <img src="images/buisnesslogo/kobelogo.webp" alt="Kobe Anderson Logo">
                         </div>
                         <h3>Web Development</h3>
                         <p>Kobe Anderson - Web Developer specializing in full-stack development and UI/UX design. Experienced in React, Node.js, and many more.</p>
                         <div class="service-hover">
                             <p>Key Focus: Full-Stack Development, UI/UX Design</p>
                         </div>
+                        <!-- <a href="https://www.kobeanderson.dev" target="_blank" class="learn-more-btn">Learn More</a> -->
                     </div>
                     <div class="service-item animate">
                         <div class="service-icon">
-                            <img src="images/buisnesslogo/paperlogo.png" alt="Paper Solutions Logo" style="width: 100px; height: auto;">
+                            <img src="images/buisnesslogo/paperlogo.png" alt="Paper Solutions Logo">
                         </div>
                         <h3>Carpenter Paper Co.</h3>
                         <p>Leading supplier of high-quality paper and packaging materials.</p>
                         <div class="service-hover">
                             <p>Key Focus: Sustainable Packaging, Food Service Supplies</p>
                         </div>
+                        <a href="https://www.carpenterpaperco.com/" target="_blank" class="learn-more-btn">Learn More</a>
                     </div>
                     <div class="service-item animate">
                         <div class="service-icon">
-                            <img src="images/buisnesslogo/Krightonlogo.webp" alt="Knighton Architecture Logo" style="width: 100px; height: auto;">
+                            <img src="images/buisnesslogo/Krightonlogo.webp" alt="Knighton Logo">
                         </div>
-                        <h3>Knighton Architecture</h3>
-                        <p>Premier architectural firm providing comprehensive design and engineering solutions for commercial and residential projects.</p>
+                        <h3>Knighton Architecture & Construction</h3>
+                        <p>Premier firm providing comprehensive architectural design, engineering, and construction solutions. Specializing in commercial and restaurant projects with full-service capabilities from concept to completion.</p>
                         <div class="service-hover">
-                            <p>Key Focus: Full Architectural Design, Interior Design, Structural Engineering, Urban Planning</p>
+                            <p>Key Focus: Comprehensive architectural design, structural engineering, and urban planning, combined with expert commercial construction, build-outs, and project management.</p>
                         </div>
+                        <a href="https://knightonarchitecture.com/" target="_blank" class="learn-more-btn">Learn More</a>
                     </div>
                     <div class="service-item animate">
                         <div class="service-icon">
-                            <img src="images/buisnesslogo/Krightonlogo.webp" alt="Knighton Construction Logo" style="width: 100px; height: auto;">
-                        </div>
-                        <h3>Knighton Construction</h3>
-                        <p>Expert construction division of Knighton, specializing in commercial and restaurant build-outs with comprehensive project management.</p>
-                        <div class="service-hover">
-                            <p>Key Focus: Commercial Construction, Restaurant Build-outs, Project Management</p>
-                        </div>
-                    </div>
-                    <div class="service-item animate">
-                        <div class="service-icon">
-                            <img src="images/buisnesslogo/Pueblo.webp" alt="Coffee Specialties Logo" style="width: 100px; height: auto;">
+                            <img src="images/buisnesslogo/Pueblo.webp" alt="Coffee Specialties Logo">
                         </div>
                         <h3>Pueblo Coffee Company</h3>
                         <p>Specializing in coffee sourcing, roasting and expert barista training.</p>
                         <div class="service-hover">
                             <p>Key Focus: Custom crafting, premium sourcing, white labeling customization</p>
                         </div>
+                        <a href="https://pueblocoffeeroasters.com/" target="_blank" class="learn-more-btn">Learn More</a>
                     </div>
                     <div class="service-item animate">
                         <div class="service-icon">
-                            <img src="images/buisnesslogo/fantastic-film.webp" alt="Fantastic Film Logo" style="width: 100px; height: auto;">
+                            <img src="images/buisnesslogo/fantastic-film.webp" alt="Fantastic Film Logo">
                         </div>
                         <h3>Fantastic Film</h3>
                         <p>Professional film and media production services specializing in commercial and promotional content.</p>
                         <div class="service-hover">
                             <p>Key Focus: Commercial Production, Media Content, Brand Storytelling</p>
                         </div>
+                        <a href="https://fantastic-film.com/" target="_blank" class="learn-more-btn">Learn More</a>
+                    </div>
+                    <div class="service-item animate">
+                        <div class="service-icon">
+                            <img src="/images/buisnesslogo/oxpher-business-consulting.webp" alt="Oxpher Business & Consulting Logo">
+                        </div>
+                        <h3>Oxpher Business & Consulting</h3>
+                        <p>Specializing in successfully entering and expanding in the U.S. market. With over a decade of experience, our expert team—comprising executives, attorneys, and industry specialists—from business setup to strategic growth. We provide comprehensive support, including orientation, travel arrangements, investment guidance, acquisitions, licensing, and FDA/USDA certifications.</p>
+                        <div class="service-hover">
+                            <p>Key Focus: Market Entry & Expansion, Investment & Acquisitions, Regulatory Compliance, Expert-Led Strategies</p>
+                        </div>
+                        <a href="https://oxpher.com/" target="_blank" class="learn-more-btn">Learn More</a>
+                    </div>
+                    <div class="service-item animate">
+                        <div class="service-icon">
+                            <img src="images/buisnesslogo/Power-Washing-Services.webp" alt="Power Washing Services Logo">
+                        </div>
+                        <h3>Power Washing Services</h3>
+                        <p>Professional power washing and cleaning services, delivering exceptional results for commercial and residential properties with state-of-the-art equipment and eco-friendly solutions.</p>
+                        <div class="service-hover">
+                            <p>Key Focus: Commercial Cleaning, Property Maintenance, Eco-Friendly Solutions, Professional Equipment</p>
+                        </div>
+                        <!-- <a href="#" target="_blank" class="learn-more-btn">Learn More</a> -->
                     </div>
                    
                 </div>
